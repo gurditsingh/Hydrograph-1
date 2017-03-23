@@ -16,7 +16,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.UniqueSequenceEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.UniqueSequenceComponent
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 /**
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class UniqueSequenceAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase{
+class UniqueSequenceAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase{
 
   private var uniqueSequenceGenerator: UniqueSequenceEntityGenerator = null
   private var sparkUniqueSequenceComponent: UniqueSequenceComponent = null

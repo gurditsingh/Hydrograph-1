@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.RemoveDupsEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.RemoveDupsComponent
-import hydrograph.engine.spark.components.adapter.base.StraightPullAdatperBase
+import hydrograph.engine.spark.components.adapter.base.StraightPullAdapterBase
 import hydrograph.engine.spark.components.base.StraightPullComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class RemoveDupsAdapter(typeBaseComponent: TypeBaseComponent) extends StraightPullAdatperBase{
+class RemoveDupsAdapter(typeBaseComponent: TypeBaseComponent) extends StraightPullAdapterBase{
 
   private var removeDupsGenerator:RemoveDupsEntityGenerator=null
   private var removeDupsComponent:RemoveDupsComponent=null

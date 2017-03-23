@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputMysqlEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputMysqlComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputMysqlAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase {
+class OutputMysqlAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase {
 
   private var outputMysqlEntityGenerator: OutputMysqlEntityGenerator = null
   private var sparkOMysqlComponent: OutputMysqlComponent = null

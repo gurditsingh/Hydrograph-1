@@ -20,7 +20,7 @@ import hydrograph.engine.spark.components.base.StraightPullComponentBase
   * @author Bitwise
   *
   */
-trait StraightPullAdatperBase extends AdapterBase{
+trait StraightPullAdapterBase extends AdapterBase{
 
   def getComponent():StraightPullComponentBase
 }

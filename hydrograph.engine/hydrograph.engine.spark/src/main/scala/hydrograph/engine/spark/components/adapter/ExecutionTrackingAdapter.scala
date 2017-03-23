@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.ExecutionTrackingEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.ExecutionTrackingComponent
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class ExecutionTrackingAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase {
+class ExecutionTrackingAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase {
 
   var executionTracking: ExecutionTrackingEntityGenerator = null;
   var sparkEexecutionTrackingComponent: ExecutionTrackingComponent = null;

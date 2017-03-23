@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.FilterEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.FilterComponentWithUDF
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class FilterAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase {
+class FilterAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase {
 
   var filter: FilterEntityGenerator = null;
   var sparkFilterComponent: FilterComponentWithUDF = null;

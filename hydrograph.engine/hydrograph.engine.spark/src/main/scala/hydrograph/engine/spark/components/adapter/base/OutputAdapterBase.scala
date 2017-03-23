@@ -20,7 +20,7 @@ import hydrograph.engine.spark.components.base.SparkFlow
   * @author Bitwise
   *
   */
-trait OutputAdatperBase extends AdapterBase{
+trait OutputAdapterBase extends AdapterBase{
 
   def getComponent():SparkFlow
 }

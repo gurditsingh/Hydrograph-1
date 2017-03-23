@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputFileDelimitedEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputFileDelimitedComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 /**
@@ -24,7 +24,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputFileDelimitedAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase{
+class OutputFileDelimitedAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase{
 
   private  var outputFileDelimited:OutputFileDelimitedEntityGenerator=null
 private var sparkOFileDelimitedComponent:OutputFileDelimitedComponent=null

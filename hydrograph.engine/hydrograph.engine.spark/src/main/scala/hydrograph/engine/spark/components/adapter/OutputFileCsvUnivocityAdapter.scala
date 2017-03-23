@@ -14,8 +14,8 @@ package hydrograph.engine.spark.components.adapter
 
 import hydrograph.engine.core.component.generator.OutputFileDelimitedEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
-import hydrograph.engine.spark.components.OutputFileCsvUnivocityComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.{OutputFileCsvUnivocityComponent, OutputFileCsvWithDateFormatsComponent}
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputFileCsvUnivocityAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase{
+class OutputFileCsvUnivocityAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase{
 
   private  var outputFileDelimited:OutputFileDelimitedEntityGenerator=null
 private var sparkOFileDelimitedComponent:OutputFileCsvUnivocityComponent=null

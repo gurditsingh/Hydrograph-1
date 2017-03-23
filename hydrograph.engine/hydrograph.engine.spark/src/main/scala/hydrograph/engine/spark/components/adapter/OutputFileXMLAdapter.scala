@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputFileXMLEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputFileXMLComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 /**
@@ -24,7 +24,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputFileXMLAdapter (typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase {
+class OutputFileXMLAdapter (typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase {
 
   private  var outputFileXML:OutputFileXMLEntityGenerator=null
   private var sparkOFileXMLComponent:OutputFileXMLComponent=null

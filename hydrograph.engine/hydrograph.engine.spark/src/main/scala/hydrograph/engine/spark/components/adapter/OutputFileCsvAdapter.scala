@@ -15,16 +15,11 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputFileDelimitedEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputFileCsvComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
-/**
-  * The Class OutputFileCsvAdapter.
-  *
-  * @author Bitwise
-  *
-  */
-class OutputFileCsvAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase{
+
+class OutputFileCsvAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase{
 
   private  var outputFileDelimited:OutputFileDelimitedEntityGenerator=null
 private var sparkOFileDelimitedComponent:OutputFileCsvComponent=null

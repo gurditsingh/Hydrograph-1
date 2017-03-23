@@ -17,7 +17,7 @@ import hydrograph.engine.core.core.HydrographJob
 import hydrograph.engine.core.props.PropertiesLoader
 import hydrograph.engine.core.schemapropagation.SchemaFieldHandler
 import hydrograph.engine.core.xmlparser.HydrographXMLInputService
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.adapter.factory.AdapterFactory
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 import org.apache.spark.sql.types.{LongType, StringType, StructField, StructType}
@@ -59,7 +59,7 @@ object Sample extends App {
   cp.addSchemaFields(schemaFieldList.toArray[SchemaField](new Array[SchemaField](schemaFieldList.size())))
 
   adapterBase.createComponent(cp)
-  val opDataFrame = adapterBase.asInstanceOf[OperationAdatperBase].getComponent().createComponent()("out0")
+  val opDataFrame = adapterBase.asInstanceOf[OperationAdapterBase].getComponent().createComponent()("out0")
 
   //opDataFrame.explain(true);
 

@@ -20,7 +20,7 @@ import hydrograph.engine.spark.components.base.OperationComponentBase
   * @author Bitwise
   *
   */
-trait OperationAdatperBase extends AdapterBase{
+trait OperationAdapterBase extends AdapterBase{
 
   def getComponent():OperationComponentBase
 }

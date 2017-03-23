@@ -49,75 +49,58 @@ class FlowBuilder(runtimeContext: RuntimeContext) {
     val outLinkMap = new mutable.HashMap[String, Map[String,DataFrame]]()
 
 
-    for (compID <- runtimeContext.traversal.getOrderedComponentsList(batch).asScala) {
+    runtimeContext.traversal.getOrderedComponentsList(batch).asScala.map(compID=>{
 
-      var baseComponentParams: BaseComponentParams = null;
-      val adapterBase:AdapterBase = runtimeContext.adapterFactory.getAdapterMap().get(compID).get
+      runtimeContext.adapterFactory.getAdapterMap()(compID) match {
 
+        case inputAdapterBase:InputAdapterBase =>
+          val baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
+            .setSparkSession(runtimeContext.sparkSession).build()
+          inputAdapterBase.createComponent(baseComponentParams)
+          val inputDataFrame= inputAdapterBase.getComponent().createComponent()
+          setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),inputDataFrame)
+          outLinkMap +=(compID -> inputDataFrame)
 
+        case executionTrackingAdapter:ExecutionTrackingAdapter =>
+          val baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
+            .setInputDataFrame().setSparkSession(runtimeContext.sparkSession).setInputDataFrameWithCompID().setInputSchemaFieldsWithCompID()
+            .setOutputSchemaFields().setInputSchemaFields().build()
+          executionTrackingAdapter.createComponent(baseComponentParams)
+          val opDataFrame= executionTrackingAdapter.getComponent().createComponent()
+          outLinkMap +=(compID -> opDataFrame)
 
-      if (adapterBase.isInstanceOf[InputAdatperBase]) {
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
-          .setSparkSession(runtimeContext.sparkSession).build()
+        case operationAdapterBase:OperationAdapterBase =>
+          val baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
+            .setInputDataFrame().setSparkSession(runtimeContext.sparkSession).setInputDataFrameWithCompID().setInputSchemaFieldsWithCompID()
+            .setOutputSchemaFieldsForOperation().setInputSchemaFields().build()
+          operationAdapterBase.createComponent(baseComponentParams)
+          val opDataFrame= operationAdapterBase.getComponent().createComponent()
+          setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),opDataFrame)
+          outLinkMap +=(compID -> opDataFrame)
 
-        adapterBase.createComponent(baseComponentParams)
-        val inputDataFrame= adapterBase.asInstanceOf[InputAdatperBase].getComponent().createComponent()
-        setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),inputDataFrame)
-        outLinkMap +=(compID -> inputDataFrame)
-      }
-        else if(adapterBase.isInstanceOf[ExecutionTrackingAdapter]){
+        case straightPullAdapterBase:StraightPullAdapterBase =>
+          val   baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
+            .setInputDataFrame().setOutputSchemaFields().setInputSchemaFields().build()
+          straightPullAdapterBase.createComponent(baseComponentParams)
+          val opDataFrame= straightPullAdapterBase.getComponent().createComponent()
+          setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),opDataFrame)
+          outLinkMap +=(compID -> opDataFrame)
 
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
-          .setInputDataFrame().setSparkSession(runtimeContext.sparkSession).setInputDataFrameWithCompID().setInputSchemaFieldsWithCompID()
-          .setOutputSchemaFields().setInputSchemaFields().build()
-
-
-        adapterBase.createComponent(baseComponentParams)
-        val opDataFrame= adapterBase.asInstanceOf[OperationAdatperBase].getComponent().createComponent()
-        outLinkMap +=(compID -> opDataFrame)
-
-
-      }
-
-      else if (adapterBase.isInstanceOf[OperationAdatperBase]) {
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
-          .setInputDataFrame().setSparkSession(runtimeContext.sparkSession).setInputDataFrameWithCompID().setInputSchemaFieldsWithCompID()
-          .setOutputSchemaFieldsForOperation().setInputSchemaFields().build()
-
-        adapterBase.createComponent(baseComponentParams)
-        val opDataFrame= adapterBase.asInstanceOf[OperationAdatperBase].getComponent().createComponent()
-        setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),opDataFrame)
-        outLinkMap +=(compID -> opDataFrame)
-
-      }
-      else if (adapterBase.isInstanceOf[StraightPullAdatperBase]) {
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
-          .setInputDataFrame().setOutputSchemaFields().setInputSchemaFields().build()
-
-        adapterBase.createComponent(baseComponentParams)
-        val opDataFrame= adapterBase.asInstanceOf[StraightPullAdatperBase].getComponent().createComponent()
-        setCacheLevel(extractRuntimeProperties(compID,runtimeContext.hydrographJob.getJAXBObject),opDataFrame)
-
-        outLinkMap +=(compID -> opDataFrame)
-      }
-      else if (adapterBase.isInstanceOf[OutputAdatperBase]) {
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
+        case outputAdapterBase:OutputAdapterBase =>
+          val  baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap,new BaseComponentParams())
             .setSparkSession(runtimeContext.sparkSession).setInputDataFrame().build()
+          outputAdapterBase.createComponent(baseComponentParams)
+          flow += outputAdapterBase.getComponent()
+          outputAdapterBase.getComponent().setSparkFlowName(compID)
 
-        adapterBase.createComponent(baseComponentParams)
-      flow += adapterBase.asInstanceOf[OutputAdatperBase].getComponent()
-        adapterBase.asInstanceOf[OutputAdatperBase].getComponent().setSparkFlowName(compID)
-
+        case runProgramAdapterBase:RunProgramAdapterBase =>
+          val baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap, new BaseComponentParams())
+            .build()
+          runProgramAdapterBase.createComponent(baseComponentParams)
+          flow += runProgramAdapterBase.getComponent()
+          runProgramAdapterBase.getComponent().setSparkFlowName(compID)
       }
-      else if (adapterBase.isInstanceOf[RunProgramAdapterBase]) {
-        baseComponentParams = ComponentParameterBuilder(compID, runtimeContext, outLinkMap, new BaseComponentParams())
-          .build()
-        adapterBase.createComponent(baseComponentParams)
-        flow += adapterBase.asInstanceOf[RunProgramAdapterBase].getComponent()
-        adapterBase.asInstanceOf[RunProgramAdapterBase].getComponent().setSparkFlowName(compID)
-      }
-
-    }
+    })
 
 flow
   }

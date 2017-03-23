@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.TransformEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.TransformComponentWithUDF
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class TransformWithUDFAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase {
+class TransformWithUDFAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase {
 
   var transform: TransformEntityGenerator = null;
   var sparkTransformComponent: TransformComponentWithUDF = null;

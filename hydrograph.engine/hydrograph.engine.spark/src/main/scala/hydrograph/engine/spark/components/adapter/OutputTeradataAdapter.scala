@@ -16,7 +16,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputTeradataEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputTeradataComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -26,7 +26,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputTeradataAdapter (typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase{
+class OutputTeradataAdapter (typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase{
   private  var outputTeradataEntityGenerator:OutputTeradataEntityGenerator=null
   private var sparkOTeradataComponent:OutputTeradataComponent=null
 

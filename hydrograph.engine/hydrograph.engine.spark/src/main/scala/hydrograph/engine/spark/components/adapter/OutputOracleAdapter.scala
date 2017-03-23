@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputOracleEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputOracleComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 /**
@@ -24,7 +24,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputOracleAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase {
+class OutputOracleAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase {
   var outputOracleEntityGenerator: OutputOracleEntityGenerator = null
   var outputOracleComponent: OutputOracleComponent = null;
 

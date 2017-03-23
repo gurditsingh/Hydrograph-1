@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.PartitionByExpressionEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.PartitionByExpressionComponent
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class PartitionByExpressionAdapter (typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase{
+class PartitionByExpressionAdapter (typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase{
 
   var partitionByExpression:PartitionByExpressionEntityGenerator=null;
   var sparkPartitionByExpressionComponent:PartitionByExpressionComponent=null;

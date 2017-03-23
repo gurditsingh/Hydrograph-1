@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.OutputJdbcUpdateEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.OutputJdbcUpdateComponent
-import hydrograph.engine.spark.components.adapter.base.OutputAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OutputAdapterBase
 import hydrograph.engine.spark.components.base.SparkFlow
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 
@@ -25,7 +25,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class OutputJdbcUpdateAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdatperBase {
+class OutputJdbcUpdateAdapter(typeBaseComponent: TypeBaseComponent) extends OutputAdapterBase {
 
   private var outputJdbcUpdateEntityGenerator: OutputJdbcUpdateEntityGenerator = null
   private var sparkOJdbcUpdateComponent: OutputJdbcUpdateComponent = null

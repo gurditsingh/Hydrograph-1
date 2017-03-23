@@ -15,7 +15,7 @@ package hydrograph.engine.spark.components.adapter
 import hydrograph.engine.core.component.generator.NormalizeEntityGenerator
 import hydrograph.engine.jaxb.commontypes.TypeBaseComponent
 import hydrograph.engine.spark.components.NormalizeComponent
-import hydrograph.engine.spark.components.adapter.base.OperationAdatperBase
+import hydrograph.engine.spark.components.adapter.base.OperationAdapterBase
 import hydrograph.engine.spark.components.base.OperationComponentBase
 import hydrograph.engine.spark.components.platform.BaseComponentParams
 /**
@@ -24,7 +24,7 @@ import hydrograph.engine.spark.components.platform.BaseComponentParams
   * @author Bitwise
   *
   */
-class NormalizeAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdatperBase{
+class NormalizeAdapter(typeBaseComponent: TypeBaseComponent) extends OperationAdapterBase{
 
   var transform:NormalizeEntityGenerator=null;
 var sparkNormalizeComponent:NormalizeComponent=null;
